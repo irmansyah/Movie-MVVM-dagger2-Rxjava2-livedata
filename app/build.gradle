@@ -14,7 +14,7 @@ android {
     buildTypes {
         debug {
             buildConfigField("String", "BASE_URL", "\"https://api.themoviedb.org/3/search/movie\"")
-            buildConfigField("String", "API_KEY", "\"b607c4a709f1c7b173cdf2e63c87eb90\"")
+            buildConfigField("String", "API_KEY", "\"your-api-key\"")
             buildConfigField("String", "BASE_URL_POSTER_PATH_SMALL", "\"http://image.tmdb.org/t/p/w185/\"")
             buildConfigField("String", "BASE_URL_POSTER_PATH_BIG", "\"http://image.tmdb.org/t/p/w500/\"")
         }
@@ -22,7 +22,7 @@ android {
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             buildConfigField("String", "BASE_URL", "\"https://api.themoviedb.org/3/search/movie\"")
-            buildConfigField("String", "API_KEY", "\"b607c4a709f1c7b173cdf2e63c87eb90\"")
+            buildConfigField("String", "API_KEY", "\"your-api-key\"")
             buildConfigField("String", "BASE_URL_POSTER_PATH_SMALL", "\"http://image.tmdb.org/t/p/w185/\"")
             buildConfigField("String", "BASE_URL_POSTER_PATH_BIG", "\"http://image.tmdb.org/t/p/w500/\"")
         }
