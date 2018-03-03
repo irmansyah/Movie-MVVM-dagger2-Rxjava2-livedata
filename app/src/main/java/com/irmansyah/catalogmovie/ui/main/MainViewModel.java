@@ -22,49 +22,7 @@ public class MainViewModel extends BaseViewModel<MainActivityNavigator> {
 
     private static final String TAG = "MainViewModel";
 
-    private final ObservableArrayList<Movie> movieObservableArrayList = new ObservableArrayList<>();
-    private final MutableLiveData<List<Movie>> movieListLiveData;
-
     public MainViewModel(DataManager dataManager, SchedulerProvider schedulerProvider) {
         super(dataManager, schedulerProvider);
-        movieListLiveData = new MutableLiveData<>();
-    }
-
-    public void getMovieList(String query) {
-        getCompositeDisposable().add(getDataManager().getMovieApiCall(query)
-                .subscribeOn(getSchedulerProvider().io())
-                .observeOn(getSchedulerProvider().ui())
-                .subscribe(new Consumer<MovieResponse>() {
-                    @Override
-                    public void accept(MovieResponse movieResponse) throws Exception {
-
-                        movieListLiveData.setValue(movieResponse.getResults());
-
-                    }
-                }, new Consumer<Throwable>() {
-                    @Override
-                    public void accept(Throwable throwable) throws Exception {
-                        Log.e(TAG, "accept: ", throwable);
-
-                        getNavigator().failedLoadApi();
-                    }
-                }));
-    }
-
-    public void onSearchClicked() {
-        getNavigator().actionSearch();
-    }
-
-    public MutableLiveData<List<Movie>> getMovieListLiveData() {
-        return movieListLiveData;
-    }
-
-    public ObservableArrayList<Movie> getMovieObservableArrayList() {
-        return movieObservableArrayList;
-    }
-
-    public void addMovieItemsToList(List<Movie> movies) {
-        movieObservableArrayList.clear();
-        movieObservableArrayList.addAll(movies);
     }
 }

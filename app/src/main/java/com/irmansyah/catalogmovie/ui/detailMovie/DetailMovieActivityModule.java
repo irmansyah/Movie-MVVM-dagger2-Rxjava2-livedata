@@ -13,7 +13,8 @@ import dagger.Provides;
 public class DetailMovieActivityModule {
 
     @Provides
-    DetailMovieViewModel provideDetailMovieViewModel(DataManager dataManager, SchedulerProvider schedulerProvider) {
+    DetailMovieViewModel provideDetailMovieViewModel(DataManager dataManager,
+                                                     SchedulerProvider schedulerProvider) {
         return new DetailMovieViewModel(dataManager, schedulerProvider);
     }
 

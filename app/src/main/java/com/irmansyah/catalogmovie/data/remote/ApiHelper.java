@@ -10,5 +10,11 @@ import io.reactivex.Single;
 
 public interface ApiHelper {
 
-    Single<MovieResponse> getMovieApiCall(String query);
+    Single<MovieResponse> getMovieSearchApiCall(String query);
+
+    Single<MovieResponse> getMovieNowPlayingApiCall();
+
+    Single<MovieResponse> getMovieUpcomingApiCall();
+
+    void shareToSocialMedia(String imageUrl);
 }

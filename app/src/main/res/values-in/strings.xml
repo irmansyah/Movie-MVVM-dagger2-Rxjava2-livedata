@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources >
+
+    <string name="app_name">katalog Film</string>
+
+    <!--search-->
+    <string name="title">Cari</string>
+    <string name="now_playing">Sedang Tayang</string>
+    <string name="upcoming">Akan Hadir</string>
+
+    <string name="overview">Ikhtisar</string>
+    <string name="release_date">Tanggal rilis</string>
+    <string name="title_movie">Judul</string>
+    <string name="share">Bagikan</string>
+    <string name="detail">Detail</string>
+
+    <string name="share_string">Ayo nonton film baru...</string>
+    <string name="share_image_url">Gambar dibagikan..</string>
+</resources>

@@ -1,28 +1,26 @@
-package com.irmansyah.catalogmovie.ui.main;
+package com.irmansyah.catalogmovie.ui.search;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
 
 import com.irmansyah.catalogmovie.data.model.Movie;
-import com.irmansyah.catalogmovie.databinding.ItemMovieBinding;
+import com.irmansyah.catalogmovie.databinding.ItemMovieSearchBinding;
 import com.irmansyah.catalogmovie.ui.base.BaseViewHolder;
 import com.irmansyah.catalogmovie.ui.detailMovie.DetailMovieActivity;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by irmansyah on 23/02/18.
  */
 
-public class MovieAdapter extends RecyclerView.Adapter<BaseViewHolder>{
+public class MovieSearchAdapter extends RecyclerView.Adapter<BaseViewHolder>{
 
     private List<Movie> movieList;
 
-    public MovieAdapter(List<Movie> movies) {
+    public MovieSearchAdapter(List<Movie> movies) {
         this.movieList = movies;
     }
 
@@ -37,7 +35,7 @@ public class MovieAdapter extends RecyclerView.Adapter<BaseViewHolder>{
 
     @Override
     public BaseViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        ItemMovieBinding binding = ItemMovieBinding.inflate(LayoutInflater.from(parent.getContext()),
+        ItemMovieSearchBinding binding = ItemMovieSearchBinding.inflate(LayoutInflater.from(parent.getContext()),
                 parent, false);
         return new MovieViewHolder(binding);
     }
@@ -53,12 +51,12 @@ public class MovieAdapter extends RecyclerView.Adapter<BaseViewHolder>{
     }
 
     public class MovieViewHolder extends BaseViewHolder implements
-            ItemMovieViewModel.ItemMovieViewModelListener{
+            ItemMovieSearchViewModel.ItemMovieViewModelListener{
 
-        private ItemMovieBinding mBinding;
-        private ItemMovieViewModel mMovieItemViewModel;
+        private ItemMovieSearchBinding mBinding;
+        private ItemMovieSearchViewModel mMovieItemViewModel;
 
-        public MovieViewHolder(ItemMovieBinding binding) {
+        public MovieViewHolder(ItemMovieSearchBinding binding) {
             super(binding.getRoot());
             this.mBinding = binding;
         }
@@ -66,7 +64,7 @@ public class MovieAdapter extends RecyclerView.Adapter<BaseViewHolder>{
         @Override
         public void onBind(int position) {
             final Movie movie = movieList.get(position);
-            mMovieItemViewModel = new ItemMovieViewModel(movie, this);
+            mMovieItemViewModel = new ItemMovieSearchViewModel(movie, this);
             mBinding.setViewModel(mMovieItemViewModel);
             mBinding.executePendingBindings();
         }

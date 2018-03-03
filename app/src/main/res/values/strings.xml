@@ -1,3 +1,18 @@
 <resources>
-    <string name="app_name">Catalogmovie</string>
+
+    <string name="app_name">Catalog movie</string>
+
+    <!--search-->
+    <string name="title">Search</string>
+    <string name="now_playing">Now playing</string>
+    <string name="upcoming">Upcoming</string>
+
+    <string name="overview">Overview</string>
+    <string name="release_date">Release Date</string>
+    <string name="title_movie">title</string>
+    <string name="share">Share</string>
+    <string name="detail">Detail</string>
+
+    <string name="share_string">Lets watch new movie...</string>
+    <string name="share_image_url">Image Shared..</string>
 </resources>

@@ -26,7 +26,22 @@ public class AppDataManager implements DataManager {
     }
 
     @Override
-    public Single<MovieResponse> getMovieApiCall(String query) {
-        return mAPiHelper.getMovieApiCall(query);
+    public Single<MovieResponse> getMovieSearchApiCall(String query) {
+        return mAPiHelper.getMovieSearchApiCall(query);
+    }
+
+    @Override
+    public Single<MovieResponse> getMovieNowPlayingApiCall() {
+        return mAPiHelper.getMovieNowPlayingApiCall();
+    }
+
+    @Override
+    public Single<MovieResponse> getMovieUpcomingApiCall() {
+        return mAPiHelper.getMovieUpcomingApiCall();
+    }
+
+    @Override
+    public void shareToSocialMedia(String imageUrl) {
+       mAPiHelper.shareToSocialMedia(imageUrl);
     }
 }

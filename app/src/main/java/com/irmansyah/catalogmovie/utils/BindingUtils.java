@@ -1,12 +1,13 @@
 package com.irmansyah.catalogmovie.utils;
 
-import android.content.Context;
 import android.databinding.BindingAdapter;
 import android.support.v7.widget.RecyclerView;
 import android.widget.ImageView;
 
 import com.irmansyah.catalogmovie.data.model.Movie;
-import com.irmansyah.catalogmovie.ui.main.MovieAdapter;
+import com.irmansyah.catalogmovie.ui.nowPlaying.NowPlayingAdapter;
+import com.irmansyah.catalogmovie.ui.search.MovieSearchAdapter;
+import com.irmansyah.catalogmovie.ui.upcoming.UpcomingAdapter;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -24,10 +25,30 @@ public class BindingUtils {
         }
     }
 
-    @BindingAdapter({"movieAdapter"})
-    public static void addMovieAdapter(RecyclerView recyclerView,
+    @BindingAdapter({"movieSearchAdapter"})
+    public static void addMovieSearchAdapter(RecyclerView recyclerView,
                                      ArrayList<Movie> movies) {
-        MovieAdapter adapter = (MovieAdapter) recyclerView.getAdapter();
+        MovieSearchAdapter adapter = (MovieSearchAdapter) recyclerView.getAdapter();
+        if(adapter != null) {
+            adapter.clearItems();
+            adapter.addItems(movies);
+        }
+    }
+
+    @BindingAdapter({"movieNowPlayingAdapter"})
+    public static void addMovieNowPlayingAdapter(RecyclerView recyclerView,
+                                       ArrayList<Movie> movies) {
+        NowPlayingAdapter adapter = (NowPlayingAdapter) recyclerView.getAdapter();
+        if(adapter != null) {
+            adapter.clearItems();
+            adapter.addItems(movies);
+        }
+    }
+
+    @BindingAdapter({"movieUpcomingAdapter"})
+    public static void addMovieUpcomingAdapter(RecyclerView recyclerView,
+                                                 ArrayList<Movie> movies) {
+        UpcomingAdapter adapter = (UpcomingAdapter) recyclerView.getAdapter();
         if(adapter != null) {
             adapter.clearItems();
             adapter.addItems(movies);

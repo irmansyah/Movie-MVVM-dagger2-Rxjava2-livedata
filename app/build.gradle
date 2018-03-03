@@ -13,16 +13,20 @@ android {
     }
     buildTypes {
         debug {
+            buildConfigField("String", "API_KEY", "\"b607c4a709f1c7b173cdf2e63c87eb90\"")
             buildConfigField("String", "BASE_URL", "\"https://api.themoviedb.org/3/search/movie\"")
-            buildConfigField("String", "API_KEY", "\"your-api-key\"")
+            buildConfigField("String", "BASE_URL_NOW_PLAYING", "\"https://api.themoviedb.org/3/movie/now_playing\"")
+            buildConfigField("String", "BASE_URL_UPCOMING", "\"https://api.themoviedb.org/3/movie/upcoming\"")
             buildConfigField("String", "BASE_URL_POSTER_PATH_SMALL", "\"http://image.tmdb.org/t/p/w185/\"")
             buildConfigField("String", "BASE_URL_POSTER_PATH_BIG", "\"http://image.tmdb.org/t/p/w500/\"")
         }
         release {
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            buildConfigField("String", "API_KEY", "\"b607c4a709f1c7b173cdf2e63c87eb90\"")
             buildConfigField("String", "BASE_URL", "\"https://api.themoviedb.org/3/search/movie\"")
-            buildConfigField("String", "API_KEY", "\"your-api-key\"")
+            buildConfigField("String", "BASE_URL_NOW_PLAYING", "\"https://api.themoviedb.org/3/movie/now_playing\"")
+            buildConfigField("String", "BASE_URL_UPCOMING", "\"https://api.themoviedb.org/3/movie/upcoming\"")
             buildConfigField("String", "BASE_URL_POSTER_PATH_SMALL", "\"http://image.tmdb.org/t/p/w185/\"")
             buildConfigField("String", "BASE_URL_POSTER_PATH_BIG", "\"http://image.tmdb.org/t/p/w500/\"")
         }
@@ -49,6 +53,7 @@ dependencies {
 
     // database
     implementation "android.arch.persistence.room:rxjava2:$rootProject.roomDatabase"
+    implementation 'com.android.support:support-v4:26.1.0'
     annotationProcessor "android.arch.persistence.room:compiler:$rootProject.roomDatabase"
 
     // font
@@ -86,6 +91,9 @@ dependencies {
     //Viewmodel
     implementation "android.arch.lifecycle:extensions:$rootProject.lifecycle"
     annotationProcessor "android.arch.lifecycle:compiler:$rootProject.lifecycle"
+
+    //search view
+    implementation "com.miguelcatalan:materialsearchview:$rootProject.materialSearchView"
 
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
