@@ -36,8 +36,8 @@ public class SearchActivity extends BaseActivity<ActivitySearchBinding, SearchVi
     @Inject
     ViewModelProvider.Factory mViewModelFactory;
 
-//    @Inject
-//    LinearLayoutManager mLayoutManager;
+    @Inject
+    LinearLayoutManager mLayoutManager;
 
     @Inject
     MovieSearchAdapter mMovieSearchAdapter;
@@ -128,9 +128,8 @@ public class SearchActivity extends BaseActivity<ActivitySearchBinding, SearchVi
     }
 
     private void setUp() {
-        LinearLayoutManager lm = new LinearLayoutManager(this);
-        lm.setOrientation(LinearLayoutManager.VERTICAL);
-        mActivitySearchBinding.movieListRecyclerview.setLayoutManager(lm);
+        mLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+        mActivitySearchBinding.movieListRecyclerview.setLayoutManager(mLayoutManager);
         mActivitySearchBinding.movieListRecyclerview.setItemAnimator(new DefaultItemAnimator());
         mActivitySearchBinding.movieListRecyclerview.setAdapter(mMovieSearchAdapter);
     }

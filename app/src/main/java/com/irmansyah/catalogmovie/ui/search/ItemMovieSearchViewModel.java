@@ -35,7 +35,6 @@ public class ItemMovieSearchViewModel {
     }
 
     public interface ItemMovieViewModelListener {
-
         void gotoDetailMovieActivity(Movie movie);
     }
 }

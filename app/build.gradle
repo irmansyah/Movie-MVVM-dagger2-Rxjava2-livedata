@@ -78,10 +78,6 @@ dependencies {
     implementation "io.reactivex.rxjava2:rxjava:$rootProject.rxjava2Version"
     implementation "io.reactivex.rxjava2:rxandroid:$rootProject.rxandroidVersion"
 
-    // reactive
-    implementation "io.reactivex.rxjava2:rxjava:$rootProject.rxjava2Version"
-    implementation "io.reactivex.rxjava2:rxandroid:$rootProject.rxandroidVersion"
-
     // UI Testing
     androidTestImplementation "com.android.support.test.espresso:espresso-core:$rootProject.espressoVersion"
     androidTestImplementation "com.android.support.test.espresso:espresso-intents:$rootProject.espressoVersion"

@@ -4,30 +4,29 @@
     <group android:checkableBehavior="single">
 
         <item
-            android:id="@+id/history"
-            android:icon="@mipmap/ic_launcher_round"
-            android:title="Histori" />
+            android:id="@+id/nav_home"
+            android:icon="@drawable/ic_home_black"
+            android:title="@string/home"/>
 
         <item
-            android:id="@+id/penjualan"
-            android:icon="@mipmap/ic_launcher_round"
-            android:title="Penjualan" />
+            android:id="@+id/nav_search"
+            android:icon="@drawable/ic_search_black_24dp"
+            android:title="@string/search" />
 
         <item
-            android:id="@+id/profile"
-            android:icon="@mipmap/ic_launcher_round"
-            android:title="Profil" />
-
-        <item
-            android:id="@+id/all_point"
-            android:icon="@mipmap/ic_launcher_round"
-            android:title="Cek Point" />
-
-        <item
-            android:id="@+id/logout"
-            android:icon="@mipmap/ic_launcher_round"
-            android:title="Logout" />
+            android:id="@+id/nav_favourite"
+            android:icon="@drawable/ic_star_black_24dp"
+            android:title="@string/favourite" />
 
     </group>
+
+    <item android:title="@string/preferences">
+        <menu>
+            <item
+                android:id="@+id/nav_setting"
+                android:icon="@drawable/ic_settings_black_24dp"
+                android:title="@string/setting" />
+        </menu>
+    </item>
 
 </menu>

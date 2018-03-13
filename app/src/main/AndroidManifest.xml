@@ -28,7 +28,11 @@
         <activity
             android:name=".ui.search.SearchActivity"
             android:parentActivityName=".ui.main.MainActivity"
-            android:theme="@style/AppTheme"/>
+            android:theme="@style/AppTheme" />
+
+        <activity android:name=".ui.favourite.FavouriteActivity"
+            android:parentActivityName=".ui.main.MainActivity"
+            android:theme="@style/AppTheme" />
     </application>
 
 </manifest>

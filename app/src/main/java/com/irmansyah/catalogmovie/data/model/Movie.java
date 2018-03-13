@@ -43,6 +43,8 @@ public class Movie implements Parcelable {
     @SerializedName("vote_average")
     private Double voteAverage;
 
+    public Movie() {}
+
     public Movie(String posterPath, boolean adult, String overview, String releaseDate, List<Integer> genreIds, Integer id,
                  String originalTitle, String originalLanguage, String title, String backdropPath, Double popularity,
                  Integer voteCount, Boolean video, Double voteAverage) {

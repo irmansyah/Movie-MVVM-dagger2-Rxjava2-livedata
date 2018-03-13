@@ -3,6 +3,9 @@
 
     <string name="app_name">katalog Film</string>
 
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
     <!--search-->
     <string name="title">Cari</string>
     <string name="now_playing">Sedang Tayang</string>
@@ -16,4 +19,15 @@
 
     <string name="share_string">Ayo nonton film baru...</string>
     <string name="share_image_url">Gambar dibagikan..</string>
+    <string name="home">Home</string>
+    <string name="preferences">Preferences</string>
+    <string name="setting">Pengaturan</string>
+    <string name="profile">Profil</string>
+    <string name="search">Cari</string>
+    <string name="favourite">Favorit</string>
+
+    <string name="favourite_added">Added this movie to favourite</string>
+    <string name="favourite_remove">remove this movie in favourite</string>
+    <string name="favourite_btn">Lets see..</string>
+    <string name="not_ready_message">Maaf fitur ini belum tersedia!</string>
 </resources>

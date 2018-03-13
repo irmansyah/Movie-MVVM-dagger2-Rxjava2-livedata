@@ -2,12 +2,17 @@ package com.irmansyah.catalogmovie.data;
 
 import android.content.Context;
 
+import com.irmansyah.catalogmovie.data.local.db.DbHelper;
 import com.irmansyah.catalogmovie.data.model.MovieResponse;
+import com.irmansyah.catalogmovie.data.model.db.MovieDb;
 import com.irmansyah.catalogmovie.data.remote.ApiHelper;
 import com.irmansyah.catalogmovie.di.scope.CatalogMovieScope;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
+import io.reactivex.Observable;
 import io.reactivex.Single;
 
 /**
@@ -18,11 +23,13 @@ public class AppDataManager implements DataManager {
 
     private final Context mContext;
     private final ApiHelper mAPiHelper;
+    private final DbHelper mDbHelper;
 
     @Inject
-    public AppDataManager(Context mContext, ApiHelper apiHlper) {
+    public AppDataManager(Context mContext, ApiHelper apiHelper, DbHelper dbHelper) {
         this.mContext = mContext;
-        this.mAPiHelper = apiHlper;
+        this.mAPiHelper = apiHelper;
+        this.mDbHelper = dbHelper;
     }
 
     @Override
@@ -43,5 +50,25 @@ public class AppDataManager implements DataManager {
     @Override
     public void shareToSocialMedia(String imageUrl) {
        mAPiHelper.shareToSocialMedia(imageUrl);
+    }
+
+    @Override
+    public Observable<Boolean> insertFavouriteMovie(MovieDb movieDb) {
+        return mDbHelper.insertFavouriteMovie(movieDb);
+    }
+
+    @Override
+    public Observable<Boolean> deleteFavouriteMovie(MovieDb movieDb) {
+        return mDbHelper.deleteFavouriteMovie(movieDb);
+    }
+
+    @Override
+    public Observable<List<MovieDb>> getFavouriteMovies() {
+        return mDbHelper.getFavouriteMovies();
+    }
+
+    @Override
+    public Observable<MovieDb> getSingleFavouriteMovie(int id) {
+        return mDbHelper.getSingleFavouriteMovie(id);
     }
 }

@@ -32,7 +32,7 @@ public class UpcomingFragmentModule {
     }
 
     @Provides
-    LinearLayoutManager provideUpcomingLinearLayoutManager(NowPlayingFragment fragment) {
+    LinearLayoutManager provideUpcomingLinearLayoutManager(UpcomingFragment fragment) {
         return new LinearLayoutManager(fragment.getActivity());
     }
 

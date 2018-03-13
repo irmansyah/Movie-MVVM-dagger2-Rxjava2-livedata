@@ -26,9 +26,11 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.Nullable;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.Toast;
 
 import com.irmansyah.catalogmovie.utils.CommonUtils;
 import com.irmansyah.catalogmovie.utils.NetworkUtils;
@@ -120,6 +122,10 @@ public abstract class BaseActivity<T extends ViewDataBinding, V extends BaseView
         if (mProgressDialog != null && mProgressDialog.isShowing()) {
             mProgressDialog.cancel();
         }
+    }
+
+    public void showToast(String text, int durationType) {
+        Toast.makeText(this, text, durationType).show();
     }
 
     public T getViewDataBinding() {

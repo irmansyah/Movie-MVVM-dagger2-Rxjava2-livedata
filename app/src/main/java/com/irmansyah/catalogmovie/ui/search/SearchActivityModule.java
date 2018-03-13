@@ -32,12 +32,11 @@ public class SearchActivityModule {
     }
 
     @Provides
-    LinearLayoutManager provideSearchLinearLayoutManager(NowPlayingFragment fragment) {
-        return new LinearLayoutManager(fragment.getActivity());
+    LinearLayoutManager provideSearchLinearLayoutManager(SearchActivity activity) {
+        return new LinearLayoutManager(activity);
     }
 
     @Provides
-//    @SearchViewModelProviderFactoryScope
     ViewModelProvider.Factory provideSearchViewModelProviderFactory(SearchViewModel viewModel) {
         return new ViewModelProviderFactory<>(viewModel);
     }

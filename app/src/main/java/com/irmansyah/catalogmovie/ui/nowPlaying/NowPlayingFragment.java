@@ -35,8 +35,8 @@ public class NowPlayingFragment extends BaseFragment<FragmentNowPlayingBinding, 
     @Inject
     NowPlayingAdapter mNowPlayingAdapter;
 
-//    @Inject
-//    LinearLayoutManager mLayoutManager;
+    @Inject
+    LinearLayoutManager mLayoutManager;
 
     private NowPlayingViewModel mNowPlayingViewModel;
 
@@ -65,9 +65,9 @@ public class NowPlayingFragment extends BaseFragment<FragmentNowPlayingBinding, 
     }
 
     private void setUp() {
-        LinearLayoutManager lm = new LinearLayoutManager(getActivity());
-        lm.setOrientation(LinearLayoutManager.VERTICAL);
-        mFragmentNowPlayingBinding.nowPlayingRecyclerView.setLayoutManager(lm);
+//        LinearLayoutManager lm = new LinearLayoutManager(getActivity());
+        mLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+        mFragmentNowPlayingBinding.nowPlayingRecyclerView.setLayoutManager(mLayoutManager);
         mFragmentNowPlayingBinding.nowPlayingRecyclerView.setItemAnimator(new DefaultItemAnimator());
         mFragmentNowPlayingBinding.nowPlayingRecyclerView.setAdapter(mNowPlayingAdapter);
     }

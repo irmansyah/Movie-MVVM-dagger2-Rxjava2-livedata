@@ -5,4 +5,8 @@ package com.irmansyah.catalogmovie.ui.detailMovie;
  */
 
 public interface DetailMovieActivityNovigator {
+
+    void showSnackBarAdded();
+
+    void showSnackBarDelete();
 }

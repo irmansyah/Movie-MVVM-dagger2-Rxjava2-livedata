@@ -1,14 +1,20 @@
 package com.irmansyah.catalogmovie.di.module;
 
 import android.app.Application;
+import android.arch.persistence.room.Room;
 import android.content.Context;
 
 import com.irmansyah.catalogmovie.R;
 import com.irmansyah.catalogmovie.data.AppDataManager;
 import com.irmansyah.catalogmovie.data.DataManager;
+import com.irmansyah.catalogmovie.data.local.db.AppDbHelper;
+import com.irmansyah.catalogmovie.data.local.db.DbHelper;
+import com.irmansyah.catalogmovie.data.local.db.MovieDatabase;
 import com.irmansyah.catalogmovie.data.remote.ApiHelper;
 import com.irmansyah.catalogmovie.data.remote.AppApiHelper;
+import com.irmansyah.catalogmovie.di.DatabaseInfo;
 import com.irmansyah.catalogmovie.di.scope.CatalogMovieScope;
+import com.irmansyah.catalogmovie.utils.AppConstants;
 import com.irmansyah.catalogmovie.utils.rx.AppSchedulerProvider;
 import com.irmansyah.catalogmovie.utils.rx.SchedulerProvider;
 
@@ -29,6 +35,12 @@ public class AppModule {
     }
 
     @Provides
+    @DatabaseInfo
+    String provideDatabaseName() {
+        return AppConstants.DB_NAME;
+    }
+
+    @Provides
     @CatalogMovieScope
     SchedulerProvider provideSchedulerProvider() {
         return new AppSchedulerProvider();
@@ -44,6 +56,19 @@ public class AppModule {
     @CatalogMovieScope
     ApiHelper provideApiHelper(AppApiHelper appApiHelper) {
         return appApiHelper;
+    }
+
+    @Provides
+    @CatalogMovieScope
+    MovieDatabase provideMovieDatabase(Context context, @DatabaseInfo String dbName) {
+        return Room.databaseBuilder(context, MovieDatabase.class, dbName).fallbackToDestructiveMigration()
+                .build();
+    }
+
+    @Provides
+    @CatalogMovieScope
+    DbHelper provideDbHelper(AppDbHelper appDbHelper) {
+        return appDbHelper;
     }
 
     @Provides

@@ -24,8 +24,8 @@ public class MovieSearchAdapter extends RecyclerView.Adapter<BaseViewHolder>{
         this.movieList = movies;
     }
 
-    public void addItems(List<Movie> blogList) {
-        movieList.addAll(blogList);
+    public void addItems(List<Movie> movies) {
+        movieList.addAll(movies);
         notifyDataSetChanged();
     }
 
@@ -51,7 +51,7 @@ public class MovieSearchAdapter extends RecyclerView.Adapter<BaseViewHolder>{
     }
 
     public class MovieViewHolder extends BaseViewHolder implements
-            ItemMovieSearchViewModel.ItemMovieViewModelListener{
+            ItemMovieSearchViewModel.ItemMovieViewModelListener {
 
         private ItemMovieSearchBinding mBinding;
         private ItemMovieSearchViewModel mMovieItemViewModel;

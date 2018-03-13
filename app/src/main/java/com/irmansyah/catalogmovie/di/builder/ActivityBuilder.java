@@ -2,6 +2,8 @@ package com.irmansyah.catalogmovie.di.builder;
 
 import com.irmansyah.catalogmovie.ui.detailMovie.DetailMovieActivity;
 import com.irmansyah.catalogmovie.ui.detailMovie.DetailMovieActivityModule;
+import com.irmansyah.catalogmovie.ui.favourite.FavouriteActivity;
+import com.irmansyah.catalogmovie.ui.favourite.FavouriteActivityModule;
 import com.irmansyah.catalogmovie.ui.main.MainActivity;
 import com.irmansyah.catalogmovie.ui.main.MainActivityModule;
 import com.irmansyah.catalogmovie.ui.nowPlaying.NowPlayingFragmentProvider;
@@ -31,4 +33,7 @@ public abstract class ActivityBuilder {
 
     @ContributesAndroidInjector(modules = DetailMovieActivityModule.class)
     abstract DetailMovieActivity bindDetailMovieActivity();
+
+    @ContributesAndroidInjector(modules = FavouriteActivityModule.class)
+    abstract FavouriteActivity bindFavouriteActivity();
 }

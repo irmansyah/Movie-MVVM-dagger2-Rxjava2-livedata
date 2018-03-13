@@ -26,5 +26,7 @@ public final class AppConstants {
         // This utility class is not publicly instantiable
     }
 
+    public static final String DB_NAME = "movie.db";
+
     public static final String TIMESTAMP_FORMAT = "yyyyMMdd_HHmmss";
 }
