@@ -30,6 +30,19 @@ public class ItemMovieDbFavouriteViewModel {
         title = new ObservableField<>(mMovieDb.title);
     }
 
+    public void gotoDetailMovieActivity() {
+        Movie movie = new Movie();
+        movie.setId(mMovieDb.getId());
+        movie.setTitle(mMovieDb.getTitle());
+        movie.setOverview(mMovieDb.getOverview());
+        movie.setReleaseDate(mMovieDb.getReleaseDate());
+        movie.setPosterPath(mMovieDb.getImageUrl());
+        movie.setFavourite(mMovieDb.isFavourite());
+
+        mListener.gotoDetailMovieActivity(movie);
+    }
+
     public interface ItemMovieDbFavouriteListener {
+        void gotoDetailMovieActivity(Movie movie);
     }
 }

@@ -19,6 +19,8 @@ public class MovieDb {
 
     public String imageUrl;
 
+    public String releaseDate;
+
     public boolean isFavourite;
 
     @ColumnInfo(name = "created_at")
@@ -49,6 +51,14 @@ public class MovieDb {
 
     public void setOverview(String overview) {
         this.overview = overview;
+    }
+
+    public String getReleaseDate() {
+        return releaseDate;
+    }
+
+    public void setReleaseDate(String releaseDate) {
+        this.releaseDate = releaseDate;
     }
 
     public boolean isFavourite() {

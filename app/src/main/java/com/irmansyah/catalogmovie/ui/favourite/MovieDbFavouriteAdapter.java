@@ -1,14 +1,17 @@
 package com.irmansyah.catalogmovie.ui.favourite;
 
+import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.irmansyah.catalogmovie.data.DataManager;
+import com.irmansyah.catalogmovie.data.model.Movie;
 import com.irmansyah.catalogmovie.data.model.db.MovieDb;
 import com.irmansyah.catalogmovie.databinding.ItemMovieDbFavouriteBinding;
 import com.irmansyah.catalogmovie.ui.base.BaseViewHolder;
+import com.irmansyah.catalogmovie.ui.detailMovie.DetailMovieActivity;
 import com.irmansyah.catalogmovie.utils.rx.SchedulerProvider;
 
 import java.util.List;
@@ -68,6 +71,12 @@ public class MovieDbFavouriteAdapter extends RecyclerView.Adapter<BaseViewHolder
             mViewModel = new ItemMovieDbFavouriteViewModel(movieDb, this);
             mBinding.setViewModel(mViewModel);
             mBinding.executePendingBindings();
+        }
+
+        @Override
+        public void gotoDetailMovieActivity(Movie movie) {
+            Context context = mBinding.getRoot().getContext();
+            context.startActivity(DetailMovieActivity.gotoDetailMovieActivity(context, movie));
         }
     }
 }

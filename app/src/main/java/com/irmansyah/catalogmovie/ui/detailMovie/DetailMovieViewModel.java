@@ -2,7 +2,9 @@ package com.irmansyah.catalogmovie.ui.detailMovie;
 
 import android.databinding.ObservableBoolean;
 import android.databinding.ObservableField;
+import android.databinding.ObservableInt;
 import android.util.Log;
+import android.view.View;
 
 import com.irmansyah.catalogmovie.BuildConfig;
 import com.irmansyah.catalogmovie.data.DataManager;
@@ -28,6 +30,7 @@ public class DetailMovieViewModel extends BaseViewModel<DetailMovieActivityNovig
     public ObservableField<String> overview = new ObservableField<>("");
     public ObservableField<String> releaseDate = new ObservableField<>("");
     public ObservableBoolean isStarSelectedObs = new ObservableBoolean();
+    public ObservableInt starSelectedMsgObs = new ObservableInt(View.INVISIBLE);
 
     private boolean isStarSelected;
 
@@ -39,6 +42,7 @@ public class DetailMovieViewModel extends BaseViewModel<DetailMovieActivityNovig
 
     public void setMovie(Movie movie) {
         this.mMovie = movie;
+
         imageUrl.set(BuildConfig.BASE_URL_POSTER_PATH_BIG + movie.getPosterPath());
         title.set(movie.getTitle());
         overview.set(movie.getOverview());
@@ -56,6 +60,10 @@ public class DetailMovieViewModel extends BaseViewModel<DetailMovieActivityNovig
                     public void accept(MovieDb movieDb) throws Exception {
                         isStarSelected = movieDb.isFavourite();
                         isStarSelectedObs.set(isStarSelected);
+
+                        if (isStarSelected == true) starSelectedMsgObs.set(View.VISIBLE);
+                        else starSelectedMsgObs.set(View.INVISIBLE);
+
                     }
                 }, new Consumer<Throwable>() {
                     @Override
@@ -74,10 +82,12 @@ public class DetailMovieViewModel extends BaseViewModel<DetailMovieActivityNovig
         if (isStarSelected) {
             selectedStar();
             isStarSelectedObs.set(true);
+            starSelectedMsgObs.set(View.VISIBLE);
             getNavigator().showSnackBarAdded();
         } else {
             unSelectedStar();
             isStarSelectedObs.set(false);
+            starSelectedMsgObs.set(View.INVISIBLE);
             getNavigator().showSnackBarDelete();
         }
     }
@@ -87,6 +97,7 @@ public class DetailMovieViewModel extends BaseViewModel<DetailMovieActivityNovig
         movieDb.setId(mMovie.getId());
         movieDb.setTitle(mMovie.getTitle());
         movieDb.setOverview(mMovie.getOverview());
+        movieDb.setReleaseDate(mMovie.getReleaseDate());
         movieDb.setImageUrl(mMovie.getPosterPath());
         movieDb.setFavourite(true);
 

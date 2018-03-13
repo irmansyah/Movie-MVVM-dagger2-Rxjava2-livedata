@@ -29,6 +29,7 @@
     <string name="favourite_remove">remove this movie in favourite</string>
     <string name="favourite_btn">Lets see..</string>
     <string name="not_ready_message">Sorry this feature is not ready!</string>
+    <string name="favourite_msg">Your favourite</string>
 
 
 </resources>

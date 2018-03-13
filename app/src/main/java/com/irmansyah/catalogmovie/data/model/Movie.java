@@ -43,11 +43,11 @@ public class Movie implements Parcelable {
     @SerializedName("vote_average")
     private Double voteAverage;
 
+    private boolean isFavourite;
+
     public Movie() {}
 
-    public Movie(String posterPath, boolean adult, String overview, String releaseDate, List<Integer> genreIds, Integer id,
-                 String originalTitle, String originalLanguage, String title, String backdropPath, Double popularity,
-                 Integer voteCount, Boolean video, Double voteAverage) {
+    public Movie(String posterPath, boolean adult, String overview, String releaseDate, List<Integer> genreIds, Integer id, String originalTitle, String originalLanguage, String title, String backdropPath, Double popularity, Integer voteCount, Boolean video, Double voteAverage, boolean isFavourite) {
         this.posterPath = posterPath;
         this.adult = adult;
         this.overview = overview;
@@ -62,6 +62,7 @@ public class Movie implements Parcelable {
         this.voteCount = voteCount;
         this.video = video;
         this.voteAverage = voteAverage;
+        this.isFavourite = isFavourite;
     }
 
     protected Movie(Parcel in) {
@@ -95,6 +96,7 @@ public class Movie implements Parcelable {
         } else {
             voteAverage = in.readDouble();
         }
+        isFavourite = in.readByte() != 0;
     }
 
     public static final Creator<Movie> CREATOR = new Creator<Movie>() {
@@ -221,6 +223,14 @@ public class Movie implements Parcelable {
         this.voteAverage = voteAverage;
     }
 
+    public boolean isFavourite() {
+        return isFavourite;
+    }
+
+    public void setFavourite(boolean favourite) {
+        isFavourite = favourite;
+    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -261,5 +271,6 @@ public class Movie implements Parcelable {
             parcel.writeByte((byte) 1);
             parcel.writeDouble(voteAverage);
         }
+        parcel.writeByte((byte) (isFavourite ? 1 : 0));
     }
 }

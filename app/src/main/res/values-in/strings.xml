@@ -30,4 +30,5 @@
     <string name="favourite_remove">remove this movie in favourite</string>
     <string name="favourite_btn">Lets see..</string>
     <string name="not_ready_message">Maaf fitur ini belum tersedia!</string>
+    <string name="favourite_msg">Favorit anda</string>
 </resources>
