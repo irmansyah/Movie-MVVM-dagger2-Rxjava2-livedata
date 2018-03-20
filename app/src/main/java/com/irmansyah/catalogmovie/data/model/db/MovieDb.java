@@ -3,16 +3,34 @@ package com.irmansyah.catalogmovie.data.model.db;
 import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;
+import android.content.ContentValues;
+import android.provider.BaseColumns;
+
+import com.irmansyah.catalogmovie.utils.AppConstants;
 
 /**
  * Created by irmansyah on 12/03/18.
  */
-@Entity(tableName = "MovieDbs")
+@Entity(tableName = AppConstants.TABLE_DB_NAME)
 public class MovieDb {
 
-    @PrimaryKey
-    public Integer id;
+    /** The name of the Cheese table. */
+    public static final String TABLE_NAME = AppConstants.TABLE_DB_NAME;
 
+    /** The name of the ID column. */
+    public static final String COLUMN_ID = BaseColumns._ID;
+
+    /** The name of the name column. */
+    public static final String COLUMN_NAME = "title";
+
+    @PrimaryKey(autoGenerate = true)
+    @ColumnInfo(index = true, name = COLUMN_ID)
+    public long id;
+
+//    @PrimaryKey
+    public Integer mId;
+
+    @ColumnInfo(name = COLUMN_NAME)
     public String title;
 
     public String overview;
@@ -29,12 +47,12 @@ public class MovieDb {
     @ColumnInfo(name = "updated_at")
     public String updatedAt;
 
-    public Integer getId() {
-        return id;
+    public Integer getmId() {
+        return mId;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setmId(Integer mId) {
+        this.mId = mId;
     }
 
     public String getTitle() {
@@ -93,5 +111,14 @@ public class MovieDb {
         this.updatedAt = updatedAt;
     }
 
-
+    public static MovieDb fromContentValues(ContentValues values) {
+        final MovieDb movieDb = new MovieDb();
+        if (values.containsKey(COLUMN_ID)) {
+            movieDb.id = values.getAsLong(COLUMN_ID);
+        }
+        if (values.containsKey(COLUMN_NAME)) {
+            movieDb.title = values.getAsString(COLUMN_NAME);
+        }
+        return movieDb;
+    }
 }

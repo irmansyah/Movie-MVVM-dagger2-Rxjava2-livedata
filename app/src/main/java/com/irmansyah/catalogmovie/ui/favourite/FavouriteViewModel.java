@@ -2,7 +2,12 @@ package com.irmansyah.catalogmovie.ui.favourite;
 
 
 import android.arch.lifecycle.MutableLiveData;
+import android.database.Cursor;
 import android.databinding.ObservableArrayList;
+import android.os.Bundle;
+import android.support.v4.app.LoaderManager;
+import android.support.v4.content.CursorLoader;
+import android.support.v4.content.Loader;
 import android.util.Log;
 
 import com.irmansyah.catalogmovie.data.DataManager;
@@ -22,6 +27,8 @@ public class FavouriteViewModel extends BaseViewModel<FavouriteNavigator> {
 
     private static final String TAG = "FavouriteViewModel";
 
+    public static final int LOADER_MOVIE_DB = 1;
+
     private final ObservableArrayList<MovieDb> movieDbObservableArrayList = new ObservableArrayList<>();
     private final MutableLiveData<List<MovieDb>> movieDbListLiveData;
 
@@ -31,6 +38,7 @@ public class FavouriteViewModel extends BaseViewModel<FavouriteNavigator> {
         movieDbListLiveData = new MutableLiveData<>();
 
         fetchFavourite();
+//        fetchFavouriteCP();
     }
 
     private void fetchFavourite() {
@@ -41,6 +49,23 @@ public class FavouriteViewModel extends BaseViewModel<FavouriteNavigator> {
                     @Override
                     public void accept(List<MovieDb> movieDbs) throws Exception {
                         movieDbListLiveData.setValue(movieDbs);
+                    }
+                }, new Consumer<Throwable>() {
+                    @Override
+                    public void accept(Throwable throwable) throws Exception {
+                        Log.e(TAG, "accept: ", throwable);
+                    }
+                }));
+    }
+
+    public void fetchFavouriteCP() {
+        getCompositeDisposable().add(getDataManager().getFavouriteMoviesCP()
+                .subscribeOn(getSchedulerProvider().io())
+                .observeOn(getSchedulerProvider().ui())
+                .subscribe(new Consumer<Cursor>() {
+                    @Override
+                    public void accept(Cursor cursor) throws Exception {
+//                        Log.i(TAG, "accept: CP: " + cursor.getColumnIndexOrThrow(MovieDb.COLUMN_NAME));
                     }
                 }, new Consumer<Throwable>() {
                     @Override

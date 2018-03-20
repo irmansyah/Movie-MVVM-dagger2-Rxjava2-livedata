@@ -1,5 +1,6 @@
 package com.irmansyah.catalogmovie.ui.detailMovie;
 
+import android.database.Cursor;
 import android.databinding.ObservableBoolean;
 import android.databinding.ObservableField;
 import android.databinding.ObservableInt;
@@ -63,7 +64,6 @@ public class DetailMovieViewModel extends BaseViewModel<DetailMovieActivityNovig
 
                         if (isStarSelected == true) starSelectedMsgObs.set(View.VISIBLE);
                         else starSelectedMsgObs.set(View.INVISIBLE);
-
                     }
                 }, new Consumer<Throwable>() {
                     @Override
@@ -94,7 +94,7 @@ public class DetailMovieViewModel extends BaseViewModel<DetailMovieActivityNovig
 
     private void selectedStar() {
         MovieDb movieDb = new MovieDb();
-        movieDb.setId(mMovie.getId());
+        movieDb.setmId(mMovie.getId());
         movieDb.setTitle(mMovie.getTitle());
         movieDb.setOverview(mMovie.getOverview());
         movieDb.setReleaseDate(mMovie.getReleaseDate());
@@ -114,7 +114,7 @@ public class DetailMovieViewModel extends BaseViewModel<DetailMovieActivityNovig
 
     private void unSelectedStar() {
         MovieDb movieDb = new MovieDb();
-        movieDb.setId(mMovie.getId());
+        movieDb.setmId(mMovie.getId());
         movieDb.setFavourite(false);
 
         getCompositeDisposable().add(getDataManager().deleteFavouriteMovie(movieDb)

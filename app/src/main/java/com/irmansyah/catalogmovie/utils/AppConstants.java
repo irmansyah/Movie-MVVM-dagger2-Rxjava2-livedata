@@ -28,5 +28,7 @@ public final class AppConstants {
 
     public static final String DB_NAME = "movie.db";
 
+    public static final String TABLE_DB_NAME = "MovieDbs";
+
     public static final String TIMESTAMP_FORMAT = "yyyyMMdd_HHmmss";
 }

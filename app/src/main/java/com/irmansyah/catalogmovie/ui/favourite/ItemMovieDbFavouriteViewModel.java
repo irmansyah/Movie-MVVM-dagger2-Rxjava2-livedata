@@ -32,7 +32,7 @@ public class ItemMovieDbFavouriteViewModel {
 
     public void gotoDetailMovieActivity() {
         Movie movie = new Movie();
-        movie.setId(mMovieDb.getId());
+        movie.setId(mMovieDb.getmId());
         movie.setTitle(mMovieDb.getTitle());
         movie.setOverview(mMovieDb.getOverview());
         movie.setReleaseDate(mMovieDb.getReleaseDate());

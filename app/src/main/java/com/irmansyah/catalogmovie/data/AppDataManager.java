@@ -1,6 +1,7 @@
 package com.irmansyah.catalogmovie.data;
 
 import android.content.Context;
+import android.database.Cursor;
 
 import com.irmansyah.catalogmovie.data.local.db.DbHelper;
 import com.irmansyah.catalogmovie.data.model.MovieResponse;
@@ -70,5 +71,25 @@ public class AppDataManager implements DataManager {
     @Override
     public Observable<MovieDb> getSingleFavouriteMovie(int id) {
         return mDbHelper.getSingleFavouriteMovie(id);
+    }
+
+    @Override
+    public Observable<Boolean> insertFavouriteMovieCP(MovieDb movieDb) {
+        return mDbHelper.insertFavouriteMovieCP(movieDb);
+    }
+
+    @Override
+    public Observable<Boolean> deleteFavouriteMovieCP(MovieDb movieDb) {
+        return mDbHelper.deleteFavouriteMovieCP(movieDb);
+    }
+
+    @Override
+    public Observable<Cursor> getFavouriteMoviesCP() {
+        return mDbHelper.getFavouriteMoviesCP();
+    }
+
+    @Override
+    public Observable<Cursor> getSingleFavouriteMovieCP(int id) {
+        return mDbHelper.getSingleFavouriteMovieCP(id);
     }
 }

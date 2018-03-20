@@ -10,6 +10,7 @@ import com.irmansyah.catalogmovie.data.DataManager;
 import com.irmansyah.catalogmovie.data.local.db.AppDbHelper;
 import com.irmansyah.catalogmovie.data.local.db.DbHelper;
 import com.irmansyah.catalogmovie.data.local.db.MovieDatabase;
+import com.irmansyah.catalogmovie.data.local.db.provider.MovieDbContentProvider;
 import com.irmansyah.catalogmovie.data.remote.ApiHelper;
 import com.irmansyah.catalogmovie.data.remote.AppApiHelper;
 import com.irmansyah.catalogmovie.di.DatabaseInfo;
@@ -70,6 +71,12 @@ public class AppModule {
     DbHelper provideDbHelper(AppDbHelper appDbHelper) {
         return appDbHelper;
     }
+
+//    @Provides
+//    @CatalogMovieScope
+//    MovieDbContentProvider provideMovieDbContentProvider(MovieDatabase movieDatabase) {
+//        return new MovieDbContentProvider(movieDatabase);
+//    }
 
     @Provides
     @CatalogMovieScope

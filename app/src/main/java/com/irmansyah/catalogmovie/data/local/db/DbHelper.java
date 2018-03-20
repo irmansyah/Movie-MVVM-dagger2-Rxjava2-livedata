@@ -1,5 +1,7 @@
 package com.irmansyah.catalogmovie.data.local.db;
 
+import android.database.Cursor;
+
 import com.irmansyah.catalogmovie.data.model.db.MovieDb;
 
 import java.util.List;
@@ -19,4 +21,13 @@ public interface DbHelper {
     Observable<List<MovieDb>> getFavouriteMovies();
 
     Observable<MovieDb> getSingleFavouriteMovie(int id);
+
+
+    Observable<Boolean> insertFavouriteMovieCP(final MovieDb movieDb);
+
+    Observable<Boolean> deleteFavouriteMovieCP(final MovieDb movieDb);
+
+    Observable<Cursor> getFavouriteMoviesCP();
+
+    Observable<Cursor> getSingleFavouriteMovieCP(int id);
 }

@@ -1,5 +1,7 @@
 package com.irmansyah.catalogmovie.data.local.db;
 
+import android.database.Cursor;
+
 import com.irmansyah.catalogmovie.data.model.db.MovieDb;
 import com.irmansyah.catalogmovie.di.scope.CatalogMovieScope;
 
@@ -64,4 +66,47 @@ public class AppDbHelper implements DbHelper {
             }
         });
     }
+
+    @Override
+    public Observable<Boolean> insertFavouriteMovieCP(final MovieDb movieDb) {
+        return Observable.fromCallable(new Callable<Boolean>() {
+            @Override
+            public Boolean call() throws Exception {
+                mMovieDatabase.movieDao().insertCP(movieDb);
+                return true;
+            }
+        });
+    }
+
+    @Override
+    public Observable<Boolean> deleteFavouriteMovieCP(final MovieDb movieDb) {
+        return Observable.fromCallable(new Callable<Boolean>() {
+            @Override
+            public Boolean call() throws Exception {
+                mMovieDatabase.movieDao().deleteCP(movieDb);
+                return true;
+            }
+        });
+    }
+
+    @Override
+    public Observable<Cursor> getFavouriteMoviesCP() {
+        return Observable.fromCallable(new Callable<Cursor>() {
+            @Override
+            public Cursor call() throws Exception {
+                return mMovieDatabase.movieDao().loadAllCP();
+            }
+        });
+    }
+
+    @Override
+    public Observable<Cursor> getSingleFavouriteMovieCP(final int id) {
+        return Observable.fromCallable(new Callable<Cursor>() {
+            @Override
+            public Cursor call() throws Exception {
+                return mMovieDatabase.movieDao().findByIdCP(id);
+            }
+        });
+    }
+
 }
