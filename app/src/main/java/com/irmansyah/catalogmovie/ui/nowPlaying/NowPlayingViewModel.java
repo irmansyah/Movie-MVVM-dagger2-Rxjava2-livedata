@@ -39,9 +39,6 @@ public class NowPlayingViewModel extends BaseViewModel<NowPlayingFragmentNavigat
                 .subscribe(new Consumer<MovieResponse>() {
                     @Override
                     public void accept(MovieResponse movieResponse) throws Exception {
-                        for (int i = 0; i < movieResponse.getResults().size(); i++) {
-                            Log.i(TAG, "accept: " + movieResponse.getResults().get(i).getTitle());
-                        }
                         nowPlayingMovieListLiveData.setValue(movieResponse.getResults());
 
                     }

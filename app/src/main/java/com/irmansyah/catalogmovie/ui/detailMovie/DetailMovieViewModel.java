@@ -1,22 +1,24 @@
 package com.irmansyah.catalogmovie.ui.detailMovie;
 
+import android.content.ContentResolver;
+import android.content.ContentValues;
 import android.database.Cursor;
 import android.databinding.ObservableBoolean;
 import android.databinding.ObservableField;
 import android.databinding.ObservableInt;
+import android.net.Uri;
 import android.util.Log;
 import android.view.View;
 
 import com.irmansyah.catalogmovie.BuildConfig;
 import com.irmansyah.catalogmovie.data.DataManager;
 import com.irmansyah.catalogmovie.data.model.Movie;
-import com.irmansyah.catalogmovie.data.model.db.MovieDb;
+import com.irmansyah.catalogmovie.data.local.db.sqlite.entity.MovieDb;
 import com.irmansyah.catalogmovie.ui.base.BaseViewModel;
 import com.irmansyah.catalogmovie.utils.rx.SchedulerProvider;
 
-import java.util.List;
-
-import io.reactivex.functions.Consumer;
+import static com.irmansyah.catalogmovie.data.local.db.sqlite.db.DatabaseContract.CONTENT_URI;
+import static com.irmansyah.catalogmovie.data.local.db.sqlite.db.DatabaseContract.MovieColumns.*;
 
 /**
  * Created by irmansyah on 26/02/18.
@@ -39,6 +41,12 @@ public class DetailMovieViewModel extends BaseViewModel<DetailMovieActivityNovig
 
     public DetailMovieViewModel(DataManager dataManager, SchedulerProvider schedulerProvider) {
         super(dataManager, schedulerProvider);
+
+        getDataManager().open();
+    }
+
+    public void setDatabaseOpen() {
+        getDataManager().open();
     }
 
     public void setMovie(Movie movie) {
@@ -48,29 +56,25 @@ public class DetailMovieViewModel extends BaseViewModel<DetailMovieActivityNovig
         title.set(movie.getTitle());
         overview.set(movie.getOverview());
         releaseDate.set(movie.getReleaseDate());
-
-        setSelectedStar();
+//        setIsFavourite();
     }
 
-    private void setSelectedStar() {
-        getCompositeDisposable().add(getDataManager().getSingleFavouriteMovie(mMovie.getId())
-                .subscribeOn(getSchedulerProvider().io())
-                .observeOn(getSchedulerProvider().ui())
-                .subscribe(new Consumer<MovieDb>() {
-                    @Override
-                    public void accept(MovieDb movieDb) throws Exception {
-                        isStarSelected = movieDb.isFavourite();
-                        isStarSelectedObs.set(isStarSelected);
+    public void setMovieImage() {
+        isStarSelected = true;
+        isStarSelectedObs.set(isStarSelected);
+        starSelectedMsgObs.set(View.VISIBLE);
+    }
 
-                        if (isStarSelected == true) starSelectedMsgObs.set(View.VISIBLE);
-                        else starSelectedMsgObs.set(View.INVISIBLE);
-                    }
-                }, new Consumer<Throwable>() {
-                    @Override
-                    public void accept(Throwable throwable) throws Exception {
-                        Log.e(TAG, "accept: ", throwable);
-                    }
-                }));
+    private void setIsFavourite() {
+        isStarSelected = mMovie.isFavourite();
+        Log.i(TAG, "setIsFavourite: " + isStarSelected);
+        if (isStarSelected) {
+            isStarSelectedObs.set(true);
+            starSelectedMsgObs.set(View.VISIBLE);
+        } else {
+            isStarSelectedObs.set(false);
+            starSelectedMsgObs.set(View.INVISIBLE);
+        }
     }
 
     public void onShareClicked() {
@@ -80,71 +84,59 @@ public class DetailMovieViewModel extends BaseViewModel<DetailMovieActivityNovig
     public void onStarClicked() {
         isStarSelected = !isStarSelected;
         if (isStarSelected) {
-            selectedStar();
+            getNavigator().selectedStar();
             isStarSelectedObs.set(true);
             starSelectedMsgObs.set(View.VISIBLE);
             getNavigator().showSnackBarAdded();
         } else {
-            unSelectedStar();
+            getNavigator().unSelectedStar();
             isStarSelectedObs.set(false);
             starSelectedMsgObs.set(View.INVISIBLE);
             getNavigator().showSnackBarDelete();
         }
+
+        Log.i(TAG, "setIsFavourite: " + isStarSelected);
     }
 
-    private void selectedStar() {
-        MovieDb movieDb = new MovieDb();
-        movieDb.setmId(mMovie.getId());
-        movieDb.setTitle(mMovie.getTitle());
-        movieDb.setOverview(mMovie.getOverview());
-        movieDb.setReleaseDate(mMovie.getReleaseDate());
-        movieDb.setImageUrl(mMovie.getPosterPath());
-        movieDb.setFavourite(true);
-
-        getCompositeDisposable().add(getDataManager().insertFavouriteMovie(movieDb)
-                .subscribeOn(getSchedulerProvider().io())
-                .observeOn(getSchedulerProvider().ui())
-                .subscribe(new Consumer<Boolean>() {
-                    @Override
-                    public void accept(Boolean aBoolean) throws Exception {
-                        getAllApp();
-                    }
-                }));
+    public void setUpCursor(Cursor cursor) {
+        Movie movie = null;
+        Log.i(TAG, "setUpCursor: " + cursor);
+        if (cursor != null){
+            if(cursor.moveToFirst()) movie = new Movie(cursor);
+            cursor.close();
+            Log.i(TAG, "setUpCursor: " + movie.isFavourite());
+        }
     }
 
-    private void unSelectedStar() {
-        MovieDb movieDb = new MovieDb();
-        movieDb.setmId(mMovie.getId());
-        movieDb.setFavourite(false);
+    public void insertValue(ContentResolver resolver) {
+        ContentValues values = new ContentValues();
+        values.put(_ID, mMovie.getId());
+        values.put(TITLE, mMovie.getTitle());
+        values.put(OVERVIEW, mMovie.getOverview());
+        values.put(RELEASE_DATE, mMovie.getReleaseDate());
+        values.put(POSTER_PATH, mMovie.getPosterPath());
+        values.put(IS_FAVOURITE, true);
 
-        getCompositeDisposable().add(getDataManager().deleteFavouriteMovie(movieDb)
-                .subscribeOn(getSchedulerProvider().io())
-                .observeOn(getSchedulerProvider().ui())
-                .subscribe(new Consumer<Boolean>() {
-                    @Override
-                    public void accept(Boolean aBoolean) throws Exception {
-                        getAllApp();
-                    }
-                }));
-
+        resolver.insert(CONTENT_URI, values);
     }
 
-    private void getAllApp() {
-        getCompositeDisposable().add(getDataManager().getFavouriteMovies()
-                .subscribeOn(getSchedulerProvider().io())
-                .observeOn(getSchedulerProvider().ui())
-                .subscribe(new Consumer<List<MovieDb>>() {
-                    @Override
-                    public void accept(List<MovieDb> movieDbs) throws Exception {
-                        for (int i = 0; i < movieDbs.size(); i++) {
-                            Log.i(TAG, "getAllApp: " + movieDbs.get(i).getTitle());
-                        }
-                    }
-                }, new Consumer<Throwable>() {
-                    @Override
-                    public void accept(Throwable throwable) throws Exception {
-                        Log.e(TAG, "accept: ", throwable);
-                    }
-                }));
+    public void updateValue(ContentResolver resolver, Uri uri) {
+        ContentValues values = new ContentValues();
+        values.put(_ID, mMovie.getId());
+        values.put(TITLE, mMovie.getTitle());
+        values.put(OVERVIEW, mMovie.getOverview());
+        values.put(RELEASE_DATE, mMovie.getReleaseDate());
+        values.put(POSTER_PATH, mMovie.getPosterPath());
+        values.put(IS_FAVOURITE, mMovie.isFavourite());
+
+        resolver.update(uri, values, null, null);
+    }
+
+    public void deleteValue(ContentResolver resolver, Uri data) {
+        resolver.delete(data, null, null);
+    }
+
+    public void closeDbHelper() {
+        getDataManager().close();
     }
 }

@@ -1,12 +1,14 @@
 package com.irmansyah.catalogmovie.data.local.db;
 
+import android.content.ContentValues;
 import android.database.Cursor;
+import android.database.SQLException;
+import android.database.sqlite.SQLiteException;
 
-import com.irmansyah.catalogmovie.data.model.db.MovieDb;
+import com.irmansyah.catalogmovie.data.local.db.sqlite.entity.MovieDb;
+import com.irmansyah.catalogmovie.data.model.Movie;
 
 import java.util.List;
-
-import io.reactivex.Observable;
 
 /**
  * Created by irmansyah on 12/03/18.
@@ -14,20 +16,25 @@ import io.reactivex.Observable;
 
 public interface DbHelper {
 
-    Observable<Boolean> insertFavouriteMovie(final MovieDb movieDb);
+    DbHelper open() throws SQLiteException;
 
-    Observable<Boolean> deleteFavouriteMovie(final MovieDb movieDb);
+    void close();
 
-    Observable<List<MovieDb>> getFavouriteMovies();
+    List<Movie> query();
 
-    Observable<MovieDb> getSingleFavouriteMovie(int id);
+    long insert(Movie movie);
 
+    int update(Movie movie);
 
-    Observable<Boolean> insertFavouriteMovieCP(final MovieDb movieDb);
+    int delete(int id);
 
-    Observable<Boolean> deleteFavouriteMovieCP(final MovieDb movieDb);
+    Cursor queryByIdProvider(String id);
 
-    Observable<Cursor> getFavouriteMoviesCP();
+    Cursor queryProvider();
 
-    Observable<Cursor> getSingleFavouriteMovieCP(int id);
+    long insertProvider(ContentValues values);
+
+    int updateProvider(String id, ContentValues values);
+
+    int deleteProvider(String id);
 }

@@ -1,11 +1,13 @@
 package com.irmansyah.catalogmovie.data;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
+import android.database.SQLException;
 
 import com.irmansyah.catalogmovie.data.local.db.DbHelper;
+import com.irmansyah.catalogmovie.data.model.Movie;
 import com.irmansyah.catalogmovie.data.model.MovieResponse;
-import com.irmansyah.catalogmovie.data.model.db.MovieDb;
 import com.irmansyah.catalogmovie.data.remote.ApiHelper;
 import com.irmansyah.catalogmovie.di.scope.CatalogMovieScope;
 
@@ -13,7 +15,6 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-import io.reactivex.Observable;
 import io.reactivex.Single;
 
 /**
@@ -54,42 +55,57 @@ public class AppDataManager implements DataManager {
     }
 
     @Override
-    public Observable<Boolean> insertFavouriteMovie(MovieDb movieDb) {
-        return mDbHelper.insertFavouriteMovie(movieDb);
+    public DbHelper open() throws SQLException {
+        return mDbHelper.open();
     }
 
     @Override
-    public Observable<Boolean> deleteFavouriteMovie(MovieDb movieDb) {
-        return mDbHelper.deleteFavouriteMovie(movieDb);
+    public void close() {
+        mDbHelper.close();
     }
 
     @Override
-    public Observable<List<MovieDb>> getFavouriteMovies() {
-        return mDbHelper.getFavouriteMovies();
+    public List<Movie> query() {
+        return mDbHelper.query();
     }
 
     @Override
-    public Observable<MovieDb> getSingleFavouriteMovie(int id) {
-        return mDbHelper.getSingleFavouriteMovie(id);
+    public long insert(Movie movie) {
+        return insert(movie);
     }
 
     @Override
-    public Observable<Boolean> insertFavouriteMovieCP(MovieDb movieDb) {
-        return mDbHelper.insertFavouriteMovieCP(movieDb);
+    public int update(Movie movie) {
+        return mDbHelper.update(movie);
     }
 
     @Override
-    public Observable<Boolean> deleteFavouriteMovieCP(MovieDb movieDb) {
-        return mDbHelper.deleteFavouriteMovieCP(movieDb);
+    public int delete(int id) {
+        return mDbHelper.delete(id);
     }
 
     @Override
-    public Observable<Cursor> getFavouriteMoviesCP() {
-        return mDbHelper.getFavouriteMoviesCP();
+    public Cursor queryByIdProvider(String id) {
+        return mDbHelper.queryByIdProvider(id);
     }
 
     @Override
-    public Observable<Cursor> getSingleFavouriteMovieCP(int id) {
-        return mDbHelper.getSingleFavouriteMovieCP(id);
+    public Cursor queryProvider() {
+        return mDbHelper.queryProvider();
+    }
+
+    @Override
+    public long insertProvider(ContentValues values) {
+        return mDbHelper.insertProvider(values);
+    }
+
+    @Override
+    public int updateProvider(String id, ContentValues values) {
+        return mDbHelper.updateProvider(id, values);
+    }
+
+    @Override
+    public int deleteProvider(String id) {
+        return mDbHelper.deleteProvider(id);
     }
 }

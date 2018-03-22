@@ -2,11 +2,13 @@ package com.irmansyah.catalogmovie.ui.detailMovie;
 
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
 import android.graphics.Color;
+import android.net.Uri;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
@@ -26,10 +28,19 @@ public class DetailMovieActivity extends BaseActivity<ActivityDetailMovieBinding
 
     public static final String MOVIE_INTENT = "MOVIE_INTENT";
 
+    private boolean isEdit = false;
+    public static int REQUEST_ADD = 100;
+    public static int RESULT_ADD = 101;
+    public static int REQUEST_UPDATE = 200;
+    public static int RESULT_UPDATE = 201;
+    public static int RESULT_DELETE = 301;
+
     @Inject
     DetailMovieViewModel mDetailMovieViewModel;
 
     ActivityDetailMovieBinding mActivityDetailMovieBinding;
+
+    private Movie mMovie;
 
     public static Intent gotoDetailMovieActivity(Context context, Movie movie) {
         Intent intent = new Intent(context, DetailMovieActivity.class);
@@ -46,7 +57,13 @@ public class DetailMovieActivity extends BaseActivity<ActivityDetailMovieBinding
         setSupportActionBar(mActivityDetailMovieBinding.toolbar);
         displayHomeAsUpEnabled();
 
-        setUp();
+        setCursor();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        mDetailMovieViewModel.closeDbHelper();
     }
 
     private void displayHomeAsUpEnabled() {
@@ -56,9 +73,25 @@ public class DetailMovieActivity extends BaseActivity<ActivityDetailMovieBinding
         }
     }
 
-    private void setUp() {
-        Movie movie = getIntent().getParcelableExtra(MOVIE_INTENT);
-        mDetailMovieViewModel.setMovie(movie);
+    private void setCursor() {
+        mDetailMovieViewModel.setDatabaseOpen();
+        Uri uri = getIntent().getData();
+
+        if (uri != null) {
+            Cursor cursor = getContentResolver().query(uri, null, null, null, null);
+            if (cursor != null){
+                if(cursor.moveToFirst()) mMovie = new Movie(cursor);
+                cursor.close();
+            }
+        }
+        if (mMovie != null) {
+            mDetailMovieViewModel.setMovieImage();
+        }
+        else {
+            mMovie = getIntent().getParcelableExtra(MOVIE_INTENT);
+        }
+
+        mDetailMovieViewModel.setMovie(mMovie);
     }
 
     @Override
@@ -114,5 +147,17 @@ public class DetailMovieActivity extends BaseActivity<ActivityDetailMovieBinding
         textView.setTextColor(Color.WHITE);
 
         snackbar.show();
+    }
+
+    @Override
+    public void selectedStar() {
+        mDetailMovieViewModel.insertValue(getContentResolver());
+        setResult(RESULT_ADD);
+    }
+
+    @Override
+    public void unSelectedStar() {
+        mDetailMovieViewModel.deleteValue(getContentResolver(), getIntent().getData());
+        setResult(RESULT_DELETE, null);
     }
 }

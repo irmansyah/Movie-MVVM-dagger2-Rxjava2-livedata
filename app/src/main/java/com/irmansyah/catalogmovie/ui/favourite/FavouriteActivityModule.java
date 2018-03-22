@@ -5,11 +5,7 @@ import android.support.v7.widget.LinearLayoutManager;
 
 import com.irmansyah.catalogmovie.ViewModelProviderFactory;
 import com.irmansyah.catalogmovie.data.DataManager;
-import com.irmansyah.catalogmovie.data.model.db.MovieDb;
-import com.irmansyah.catalogmovie.ui.nowPlaying.NowPlayingFragment;
 import com.irmansyah.catalogmovie.utils.rx.SchedulerProvider;
-
-import java.util.ArrayList;
 
 import dagger.Module;
 import dagger.Provides;
@@ -27,9 +23,10 @@ public class FavouriteActivityModule {
     }
 
     @Provides
-    MovieDbFavouriteAdapter provideMovieDbFavouriteAdapter(DataManager dataManager,
-                                               SchedulerProvider schedulerProvider) {
-        return new MovieDbFavouriteAdapter(new ArrayList<MovieDb>(), dataManager, schedulerProvider);
+    MovieDbFavouriteAdapter provideMovieDbFavouriteAdapter(FavouriteActivity activity,
+                                                           DataManager dataManager,
+                                                           SchedulerProvider schedulerProvider) {
+        return new MovieDbFavouriteAdapter(activity, dataManager, schedulerProvider);
     }
 
     @Provides

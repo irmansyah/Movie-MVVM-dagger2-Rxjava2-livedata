@@ -1,12 +1,18 @@
 package com.irmansyah.catalogmovie.data.model;
 
+import android.database.Cursor;
 import android.os.Parcel;
 import android.os.Parcelable;
 
 import com.google.gson.annotations.SerializedName;
+import com.irmansyah.catalogmovie.data.local.db.sqlite.db.DatabaseContract;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static android.provider.MediaStore.Audio.Playlists.Members._ID;
+import static com.irmansyah.catalogmovie.data.local.db.sqlite.db.DatabaseContract.getColumnInt;
+import static com.irmansyah.catalogmovie.data.local.db.sqlite.db.DatabaseContract.getColumnString;
 
 /**
  * Created by irmansyah on 23/02/18.
@@ -272,5 +278,14 @@ public class Movie implements Parcelable {
             parcel.writeDouble(voteAverage);
         }
         parcel.writeByte((byte) (isFavourite ? 1 : 0));
+    }
+
+    public Movie(Cursor cursor) {
+        this.id = getColumnInt(cursor, _ID);
+        this.title = getColumnString(cursor, DatabaseContract.MovieColumns.TITLE);
+        this.overview = getColumnString(cursor, DatabaseContract.MovieColumns.OVERVIEW);
+        this.posterPath = getColumnString(cursor, DatabaseContract.MovieColumns.POSTER_PATH);
+        this.releaseDate = getColumnString(cursor, DatabaseContract.MovieColumns.RELEASE_DATE);
+        this.isFavourite = Boolean.parseBoolean(getColumnString(cursor, DatabaseContract.MovieColumns.IS_FAVOURITE));
     }
 }

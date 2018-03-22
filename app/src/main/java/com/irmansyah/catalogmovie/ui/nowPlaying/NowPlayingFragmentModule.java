@@ -26,9 +26,10 @@ public class NowPlayingFragmentModule {
     }
 
     @Provides
-    NowPlayingAdapter provideNowPlayingAdapter(DataManager dataManager,
+    NowPlayingAdapter provideNowPlayingAdapter(NowPlayingFragment fragment,
+                                               DataManager dataManager,
                                                SchedulerProvider schedulerProvider) {
-        return new NowPlayingAdapter(new ArrayList<Movie>(), dataManager, schedulerProvider);
+        return new NowPlayingAdapter(new ArrayList<Movie>(), fragment.getActivity(), dataManager, schedulerProvider);
     }
 
     @Provides

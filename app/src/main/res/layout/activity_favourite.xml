@@ -30,8 +30,7 @@
             android:id="@+id/movie_list_recyclerview"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            tools:listitem="@layout/item_movie_db_favourite"
-            tools:movieDbFAvouriteAdapter="@{viewModel.movieDbObservableArrayList}"/>
+            tools:listitem="@layout/item_movie_db_favourite"/>
 
     </LinearLayout>
 

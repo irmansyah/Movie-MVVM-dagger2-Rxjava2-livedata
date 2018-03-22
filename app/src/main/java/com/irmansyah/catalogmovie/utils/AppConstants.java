@@ -26,7 +26,7 @@ public final class AppConstants {
         // This utility class is not publicly instantiable
     }
 
-    public static final String DB_NAME = "movie.db";
+    public static final String DB_NAME = "dbmovie";
 
     public static final String TABLE_DB_NAME = "MovieDbs";
 

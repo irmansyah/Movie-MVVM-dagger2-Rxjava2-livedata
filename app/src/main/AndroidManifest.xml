@@ -3,8 +3,13 @@
     package="com.irmansyah.catalogmovie">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <permission android:name="com.irmansyah.catalogmovie.data.local.db.provider.READ_WRITE"  android:protectionLevel="normal"/>
-    <permission android:name="com.irmansyah.catalogmovie.data.local.db.provider.WRITE_DATABASE" android:protectionLevel="normal"/>
+
+    <permission
+        android:name="com.irmansyah.catalogmovie.READ_DATABASE"
+        android:protectionLevel="normal" />
+    <permission
+        android:name="com.irmansyah.catalogmovie.WRITE_DATABASE"
+        android:protectionLevel="normal" />
 
     <application
         android:name=".MovieApp"
@@ -21,27 +26,27 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".ui.detailMovie.DetailMovieActivity"
             android:parentActivityName=".ui.main.MainActivity"
             android:theme="@style/AppTheme" />
-
         <activity
             android:name=".ui.search.SearchActivity"
             android:parentActivityName=".ui.main.MainActivity"
             android:theme="@style/AppTheme" />
-
-        <activity android:name=".ui.favourite.FavouriteActivity"
+        <activity
+            android:name=".ui.favourite.FavouriteActivity"
             android:parentActivityName=".ui.main.MainActivity"
             android:theme="@style/AppTheme" />
 
         <provider
-            android:name="com.irmansyah.catalogmovie.data.local.db.provider.MovieDbContentProvider"
-            android:authorities="com.irmansyah.catalogmovie.data.local.db.provider"
+            android:name=".data.local.db.sqlite.provider.MovieDbContentProvider"
+            android:authorities="com.irmansyah.catalogmovie"
             android:exported="true"
-            android:readPermission="com.irmansyah.catalogmovie.data.local.db.provider.READ_WRITE"
-            android:writePermission="com.irmansyah.catalogmovie.data.local.db.provider.WRITE_DATABASE"/>
+            android:readPermission="com.irmansyah.catalogmovie.READ_DATABASE"
+            android:writePermission="com.irmansyah.catalogmovie.WRITE_DATABASE" />
+
+        <activity android:name=".ui.Main2Activity"></activity>
     </application>
 
 </manifest>

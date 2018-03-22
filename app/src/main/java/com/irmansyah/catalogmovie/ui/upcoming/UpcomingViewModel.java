@@ -43,10 +43,6 @@ public class UpcomingViewModel extends BaseViewModel<UpcomingFragmentNavigator> 
                 .subscribe(new Consumer<MovieResponse>() {
                     @Override
                     public void accept(MovieResponse movieResponse) throws Exception {
-                        for (int i = 0; i < movieResponse.getResults().size(); i++) {
-                            Log.i(TAG, "accept: " + movieResponse.getResults().get(i).getTitle());
-                        }
-
                         upcomingMovieListLiveData.setValue(movieResponse.getResults());
 
                     }

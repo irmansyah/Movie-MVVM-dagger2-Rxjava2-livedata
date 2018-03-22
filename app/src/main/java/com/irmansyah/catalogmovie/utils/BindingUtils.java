@@ -1,11 +1,11 @@
 package com.irmansyah.catalogmovie.utils;
 
+import android.database.Cursor;
 import android.databinding.BindingAdapter;
 import android.support.v7.widget.RecyclerView;
 import android.widget.ImageView;
 
 import com.irmansyah.catalogmovie.data.model.Movie;
-import com.irmansyah.catalogmovie.data.model.db.MovieDb;
 import com.irmansyah.catalogmovie.ui.favourite.MovieDbFavouriteAdapter;
 import com.irmansyah.catalogmovie.ui.nowPlaying.NowPlayingAdapter;
 import com.irmansyah.catalogmovie.ui.search.MovieSearchAdapter;
@@ -59,11 +59,10 @@ public class BindingUtils {
 
     @BindingAdapter({"movieDbFAvouriteAdapter"})
     public static void addMovieDbFAvouriteAdapter(RecyclerView recyclerView,
-                                               ArrayList<MovieDb> movieDbs) {
+                                               Cursor movieDbs) {
         MovieDbFavouriteAdapter adapter = (MovieDbFavouriteAdapter) recyclerView.getAdapter();
         if(adapter != null) {
-            adapter.clearItems();
-            adapter.addItems(movieDbs);
+//            adapter.setListMovieDbs(movieDbs);
         }
     }
 }

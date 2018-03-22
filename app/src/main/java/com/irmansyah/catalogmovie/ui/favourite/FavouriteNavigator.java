@@ -5,4 +5,6 @@ package com.irmansyah.catalogmovie.ui.favourite;
  */
 
 public interface FavouriteNavigator {
+
+    void setActionQuery();
 }

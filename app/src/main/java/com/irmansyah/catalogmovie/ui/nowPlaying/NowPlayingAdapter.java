@@ -1,6 +1,9 @@
 package com.irmansyah.catalogmovie.ui.nowPlaying;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,12 +12,15 @@ import android.view.ViewGroup;
 import com.irmansyah.catalogmovie.data.DataManager;
 import com.irmansyah.catalogmovie.data.model.Movie;
 import com.irmansyah.catalogmovie.databinding.ItemMovieNowPlayingBinding;
+import com.irmansyah.catalogmovie.ui.Main2Activity;
 import com.irmansyah.catalogmovie.ui.base.BaseViewHolder;
 import com.irmansyah.catalogmovie.ui.detailMovie.DetailMovieActivity;
 import com.irmansyah.catalogmovie.utils.rx.SchedulerProvider;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static com.irmansyah.catalogmovie.data.local.db.sqlite.db.DatabaseContract.CONTENT_URI;
 
 /**
  * Created by irmansyah on 28/02/18.
@@ -24,15 +30,17 @@ public class NowPlayingAdapter extends RecyclerView.Adapter<BaseViewHolder> {
 
     private List<Movie> mMovieList;
 
-    private DataManager mDataManager;
-    private SchedulerProvider mSchedulerProvider;
+    private final Activity mActivity;
+    private final DataManager mDataManager;
+    private final SchedulerProvider mSchedulerProvider;
 
     private NowPlayingAdapterListener mListener;
 
-    public NowPlayingAdapter(List<Movie> movies, DataManager dataManager, SchedulerProvider schedulerProvider) {
+    public NowPlayingAdapter(List<Movie> movies, Activity activity, DataManager dataManager, SchedulerProvider schedulerProvider) {
         this.mMovieList = movies;
         this.mDataManager = dataManager;
         this.mSchedulerProvider = schedulerProvider;
+        this.mActivity = activity;
     }
 
     public void setListener(NowPlayingAdapterListener listener) {
@@ -93,7 +101,13 @@ public class NowPlayingAdapter extends RecyclerView.Adapter<BaseViewHolder> {
         @Override
         public void gotoDetailMovieActivity(Movie movie) {
             Context context = mBinding.getRoot().getContext();
-            context.startActivity(DetailMovieActivity.gotoDetailMovieActivity(context, movie));
+            Intent intent = new Intent(context, DetailMovieActivity.class);
+//            Intent intent = new Intent(context, Main2Activity.class);
+            Uri uri = Uri.parse(CONTENT_URI + "/" + movie.getId());
+            intent.setData(uri);
+            intent.putExtra(DetailMovieActivity.MOVIE_INTENT, movie);
+            mActivity.startActivityForResult(intent, DetailMovieActivity.REQUEST_UPDATE);
+//            mActivity.startActivity(DetailMovieActivity.gotoDetailMovieActivity(mActivity, movie));
         }
     }
 
