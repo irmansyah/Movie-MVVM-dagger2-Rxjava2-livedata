@@ -103,10 +103,10 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
                 startActivity(SearchActivity.gotoSearchActivity(this));
                 return true;
 
-            case R.id.action_settings:
-                Intent intent = new Intent(this, SettingActivity.class);
-                startActivity(intent);
-                return true;
+//            case R.id.action_settings:
+//                Intent intent = new Intent(this, SettingActivity.class);
+//                startActivity(intent);
+//                return true;
 
             default:
                 return super.onOptionsItemSelected(item);

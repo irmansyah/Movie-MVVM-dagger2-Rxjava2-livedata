@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/Catalogmovie.iml" filepath="$PROJECT_DIR$/Catalogmovie.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Movie-MVVM-dagger2-Rxjava2-livedata-movie_with_sqlite.iml" filepath="$PROJECT_DIR$/Movie-MVVM-dagger2-Rxjava2-livedata-movie_with_sqlite.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/catalogmoviefavourite/catalogmoviefavourite.iml" filepath="$PROJECT_DIR$/catalogmoviefavourite/catalogmoviefavourite.iml" />
     </modules>

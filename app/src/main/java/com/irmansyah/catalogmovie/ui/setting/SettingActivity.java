@@ -26,8 +26,8 @@ public class SettingActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         getFragmentManager().beginTransaction().replace(android.R.id.content, new MyPreferenceFragment()).commit();
 
-        getSupportActionBar().setDisplayShowHomeEnabled(true);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+//        getSupportActionBar().setDisplayShowHomeEnabled(true);
+//        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
     @SuppressLint("ValidFragment")
@@ -63,7 +63,7 @@ public class SettingActivity extends AppCompatActivity {
 
             if (key.equals(reminder_daily)) {
                 if (isOn) {
-                    alarmReceiver.setRepeatingAlarm(getActivity(), alarmReceiver.TYPE_REPEATING, "15:45", getString(R.string.label_alarm_daily_reminder));
+                    alarmReceiver.setRepeatingAlarm(getActivity(), alarmReceiver.TYPE_REPEATING, "07:00", getString(R.string.label_alarm_daily_reminder));
                 } else {
                     alarmReceiver.cancelAlarm(getActivity(), alarmReceiver.TYPE_REPEATING);
                 }

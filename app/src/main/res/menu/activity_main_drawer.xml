@@ -20,13 +20,13 @@
 
     </group>
 
-    <!--<item android:title="@string/preferences">-->
-        <!--<menu>-->
-            <!--<item-->
-                <!--android:id="@+id/nav_setting"-->
-                <!--android:icon="@drawable/ic_settings_black_24dp"-->
-                <!--android:title="@string/setting" />-->
-        <!--</menu>-->
-    <!--</item>-->
+    <item android:title="@string/preferences">
+        <menu>
+            <item
+                android:id="@+id/nav_setting"
+                android:icon="@drawable/ic_settings_black_24dp"
+                android:title="@string/setting" />
+        </menu>
+    </item>
 
 </menu>
