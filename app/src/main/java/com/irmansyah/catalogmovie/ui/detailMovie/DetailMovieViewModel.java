@@ -13,12 +13,16 @@ import android.view.View;
 import com.irmansyah.catalogmovie.BuildConfig;
 import com.irmansyah.catalogmovie.data.DataManager;
 import com.irmansyah.catalogmovie.data.model.Movie;
-import com.irmansyah.catalogmovie.data.local.db.sqlite.entity.MovieDb;
 import com.irmansyah.catalogmovie.ui.base.BaseViewModel;
 import com.irmansyah.catalogmovie.utils.rx.SchedulerProvider;
 
 import static com.irmansyah.catalogmovie.data.local.db.sqlite.db.DatabaseContract.CONTENT_URI;
-import static com.irmansyah.catalogmovie.data.local.db.sqlite.db.DatabaseContract.MovieColumns.*;
+import static com.irmansyah.catalogmovie.data.local.db.sqlite.db.DatabaseContract.MovieColumns.IS_FAVOURITE;
+import static com.irmansyah.catalogmovie.data.local.db.sqlite.db.DatabaseContract.MovieColumns.OVERVIEW;
+import static com.irmansyah.catalogmovie.data.local.db.sqlite.db.DatabaseContract.MovieColumns.POSTER_PATH;
+import static com.irmansyah.catalogmovie.data.local.db.sqlite.db.DatabaseContract.MovieColumns.RELEASE_DATE;
+import static com.irmansyah.catalogmovie.data.local.db.sqlite.db.DatabaseContract.MovieColumns.TITLE;
+import static com.irmansyah.catalogmovie.data.local.db.sqlite.db.DatabaseContract.MovieColumns._ID;
 
 /**
  * Created by irmansyah on 26/02/18.

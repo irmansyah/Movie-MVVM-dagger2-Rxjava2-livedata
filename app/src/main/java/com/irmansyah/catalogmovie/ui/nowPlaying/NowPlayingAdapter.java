@@ -6,18 +6,15 @@ import android.content.Intent;
 import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
 
 import com.irmansyah.catalogmovie.data.DataManager;
 import com.irmansyah.catalogmovie.data.model.Movie;
 import com.irmansyah.catalogmovie.databinding.ItemMovieNowPlayingBinding;
-import com.irmansyah.catalogmovie.ui.Main2Activity;
 import com.irmansyah.catalogmovie.ui.base.BaseViewHolder;
 import com.irmansyah.catalogmovie.ui.detailMovie.DetailMovieActivity;
 import com.irmansyah.catalogmovie.utils.rx.SchedulerProvider;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import static com.irmansyah.catalogmovie.data.local.db.sqlite.db.DatabaseContract.CONTENT_URI;

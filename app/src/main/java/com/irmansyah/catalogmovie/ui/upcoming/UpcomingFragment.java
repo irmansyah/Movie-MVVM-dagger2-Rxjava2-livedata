@@ -9,17 +9,13 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.LinearLayoutManager;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 
 import com.irmansyah.catalogmovie.BR;
 import com.irmansyah.catalogmovie.R;
 import com.irmansyah.catalogmovie.data.model.Movie;
 import com.irmansyah.catalogmovie.databinding.FragmentUpcomingBinding;
 import com.irmansyah.catalogmovie.ui.base.BaseFragment;
-import com.irmansyah.catalogmovie.ui.nowPlaying.NowPlayingFragment;
 
 import java.util.List;
 

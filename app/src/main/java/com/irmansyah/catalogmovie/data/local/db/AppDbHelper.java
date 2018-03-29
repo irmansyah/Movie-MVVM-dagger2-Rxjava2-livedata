@@ -3,12 +3,10 @@ package com.irmansyah.catalogmovie.data.local.db;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
-import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
 
 import com.irmansyah.catalogmovie.data.local.db.sqlite.db.DatabaseHelper;
-import com.irmansyah.catalogmovie.data.local.db.sqlite.entity.MovieDb;
 import com.irmansyah.catalogmovie.data.model.Movie;
 import com.irmansyah.catalogmovie.di.scope.CatalogMovieScope;
 
@@ -18,12 +16,11 @@ import java.util.List;
 import javax.inject.Inject;
 
 import static android.provider.BaseColumns._ID;
-import static com.irmansyah.catalogmovie.data.local.db.sqlite.db.DatabaseContract.MovieColumns.POSTER_PATH;
 import static com.irmansyah.catalogmovie.data.local.db.sqlite.db.DatabaseContract.MovieColumns.IS_FAVOURITE;
 import static com.irmansyah.catalogmovie.data.local.db.sqlite.db.DatabaseContract.MovieColumns.OVERVIEW;
+import static com.irmansyah.catalogmovie.data.local.db.sqlite.db.DatabaseContract.MovieColumns.POSTER_PATH;
 import static com.irmansyah.catalogmovie.data.local.db.sqlite.db.DatabaseContract.MovieColumns.RELEASE_DATE;
 import static com.irmansyah.catalogmovie.data.local.db.sqlite.db.DatabaseContract.MovieColumns.TITLE;
-
 import static com.irmansyah.catalogmovie.data.local.db.sqlite.db.DatabaseContract.TABLE_MOVIE;
 
 /**

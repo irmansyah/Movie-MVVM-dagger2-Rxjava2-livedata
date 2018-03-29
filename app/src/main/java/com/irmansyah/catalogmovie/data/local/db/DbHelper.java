@@ -2,10 +2,8 @@ package com.irmansyah.catalogmovie.data.local.db;
 
 import android.content.ContentValues;
 import android.database.Cursor;
-import android.database.SQLException;
 import android.database.sqlite.SQLiteException;
 
-import com.irmansyah.catalogmovie.data.local.db.sqlite.entity.MovieDb;
 import com.irmansyah.catalogmovie.data.model.Movie;
 
 import java.util.List;

@@ -19,7 +19,6 @@ package com.irmansyah.catalogmovie.ui.base;
 import android.arch.lifecycle.ViewModel;
 import android.databinding.ObservableBoolean;
 
-
 import com.irmansyah.catalogmovie.data.DataManager;
 import com.irmansyah.catalogmovie.utils.rx.SchedulerProvider;
 

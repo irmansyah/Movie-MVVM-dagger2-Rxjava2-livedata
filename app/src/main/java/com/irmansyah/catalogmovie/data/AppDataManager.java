@@ -1,15 +1,25 @@
 package com.irmansyah.catalogmovie.data;
 
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.SQLException;
+import android.media.RingtoneManager;
+import android.net.Uri;
+import android.support.v4.app.NotificationCompat;
+import android.support.v4.content.ContextCompat;
 
+import com.google.gson.Gson;
+import com.irmansyah.catalogmovie.R;
 import com.irmansyah.catalogmovie.data.local.db.DbHelper;
 import com.irmansyah.catalogmovie.data.model.Movie;
 import com.irmansyah.catalogmovie.data.model.MovieResponse;
 import com.irmansyah.catalogmovie.data.remote.ApiHelper;
 import com.irmansyah.catalogmovie.di.scope.CatalogMovieScope;
+import com.irmansyah.catalogmovie.ui.main.MainActivity;
 
 import java.util.List;
 
@@ -107,5 +117,27 @@ public class AppDataManager implements DataManager {
     @Override
     public int deleteProvider(String id) {
         return mDbHelper.deleteProvider(id);
+    }
+
+    @Override
+    public void showNotification(String title, String message, int notifId, Movie item) {
+        NotificationManager notificationManagerCompat = (NotificationManager) mContext.getSystemService(Context.NOTIFICATION_SERVICE);
+        Uri alarmSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+
+        Intent intent = new Intent(mContext, MainActivity.class);
+        intent.putExtra(MainActivity.MOVIE_ITEM, new Gson().toJson(item));
+        PendingIntent pendingIntent = PendingIntent.getActivity(mContext, notifId, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(mContext)
+                .setSmallIcon(R.mipmap.ic_launcher_round)
+                .setContentTitle(title)
+                .setContentText(message)
+                .setColor(ContextCompat.getColor(mContext, android.R.color.transparent))
+                .setContentIntent(pendingIntent)
+                .setAutoCancel(true)
+                .setVibrate(new long[]{1000, 1000, 1000, 1000, 1000})
+                .setSound(alarmSound);
+
+        notificationManagerCompat.notify(notifId, builder.build());
     }
 }

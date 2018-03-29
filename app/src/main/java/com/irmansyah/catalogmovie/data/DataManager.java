@@ -1,6 +1,7 @@
 package com.irmansyah.catalogmovie.data;
 
 import com.irmansyah.catalogmovie.data.local.db.DbHelper;
+import com.irmansyah.catalogmovie.data.model.Movie;
 import com.irmansyah.catalogmovie.data.remote.ApiHelper;
 
 /**
@@ -8,4 +9,6 @@ import com.irmansyah.catalogmovie.data.remote.ApiHelper;
  */
 
 public interface DataManager extends ApiHelper, DbHelper {
+
+    void showNotification(String title, String message, int notifId, Movie item);
 }

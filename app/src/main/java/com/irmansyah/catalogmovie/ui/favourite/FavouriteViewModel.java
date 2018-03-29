@@ -4,7 +4,6 @@ package com.irmansyah.catalogmovie.ui.favourite;
 import android.arch.lifecycle.MutableLiveData;
 import android.database.Cursor;
 import android.databinding.ObservableArrayList;
-import android.util.Log;
 
 import com.irmansyah.catalogmovie.data.DataManager;
 import com.irmansyah.catalogmovie.data.local.db.sqlite.entity.MovieDb;

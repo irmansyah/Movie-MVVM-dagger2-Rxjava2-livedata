@@ -4,17 +4,12 @@ package com.irmansyah.catalogmovie.ui.nowPlaying;
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProvider;
 import android.arch.lifecycle.ViewModelProviders;
-import android.database.Cursor;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 
 import com.irmansyah.catalogmovie.BR;
 import com.irmansyah.catalogmovie.R;
@@ -25,8 +20,6 @@ import com.irmansyah.catalogmovie.ui.base.BaseFragment;
 import java.util.List;
 
 import javax.inject.Inject;
-
-import static com.irmansyah.catalogmovie.data.local.db.sqlite.db.DatabaseContract.CONTENT_URI;
 
 /**
  * A simple {@link Fragment} subclass.

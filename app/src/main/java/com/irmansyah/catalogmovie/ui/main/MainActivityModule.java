@@ -1,15 +1,7 @@
 package com.irmansyah.catalogmovie.ui.main;
 
-import android.arch.lifecycle.ViewModelProvider;
-import android.support.v7.widget.LinearLayoutManager;
-
-import com.irmansyah.catalogmovie.ViewModelProviderFactory;
 import com.irmansyah.catalogmovie.data.DataManager;
-import com.irmansyah.catalogmovie.data.model.Movie;
-import com.irmansyah.catalogmovie.ui.search.MovieSearchAdapter;
 import com.irmansyah.catalogmovie.utils.rx.SchedulerProvider;
-
-import java.util.ArrayList;
 
 import dagger.Module;
 import dagger.Provides;

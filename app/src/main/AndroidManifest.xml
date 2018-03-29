@@ -3,6 +3,7 @@
     package="com.irmansyah.catalogmovie">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
 
     <permission
         android:name="com.irmansyah.catalogmovie.READ_DATABASE"
@@ -39,6 +40,26 @@
             android:parentActivityName=".ui.main.MainActivity"
             android:theme="@style/AppTheme" />
 
+        <activity
+            android:name=".ui.setting.SettingActivity"
+            android:parentActivityName=".ui.main.MainActivity"
+            android:theme="@style/AppTheme" />
+
+        <receiver
+            android:name=".ui.upcoming.reminder.AlarmReceiver"
+            android:enabled="true"
+            android:exported="true" />
+
+        <service
+            android:name=".ui.upcoming.reminder.UpcomingSchedulerService"
+            android:enabled="true"
+            android:exported="true"
+            android:permission="com.google.android.gms.permission.BIND_NETWORK_TASK_SERVICE">
+            <intent-filter>
+                <action android:name="com.google.android.gms.gcm.ACTION_TASK_READY" />
+            </intent-filter>
+        </service>
+
         <provider
             android:name=".data.local.db.sqlite.provider.MovieDbContentProvider"
             android:authorities="com.irmansyah.catalogmovie"
@@ -46,7 +67,22 @@
             android:readPermission="com.irmansyah.catalogmovie.READ_DATABASE"
             android:writePermission="com.irmansyah.catalogmovie.WRITE_DATABASE" />
 
-        <activity android:name=".ui.Main2Activity"></activity>
+        <receiver android:name=".ui.widget.FavouriteWidget">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/favourite_widget_info" />
+        </receiver>
+
+        <service
+            android:name=".ui.widget.FavouriteWidgetService"
+            android:enabled="true"
+            android:exported="true"
+            android:permission="android.permission.BIND_REMOTEVIEWS" />
+
     </application>
 
 </manifest>

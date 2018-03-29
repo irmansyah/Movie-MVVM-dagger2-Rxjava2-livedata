@@ -3,13 +3,11 @@ package com.irmansyah.catalogmovie.ui.upcoming;
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
 
 import com.irmansyah.catalogmovie.data.model.Movie;
 import com.irmansyah.catalogmovie.databinding.ItemMovieUpcomingBinding;
 import com.irmansyah.catalogmovie.ui.base.BaseViewHolder;
-import com.irmansyah.catalogmovie.ui.base.BaseViewModel;
 import com.irmansyah.catalogmovie.ui.detailMovie.DetailMovieActivity;
 
 import java.util.List;

@@ -5,7 +5,6 @@ import android.databinding.ObservableField;
 import com.irmansyah.catalogmovie.BuildConfig;
 import com.irmansyah.catalogmovie.data.DataManager;
 import com.irmansyah.catalogmovie.data.model.Movie;
-import com.irmansyah.catalogmovie.data.local.db.sqlite.entity.MovieDb;
 import com.irmansyah.catalogmovie.ui.base.BaseViewModel;
 import com.irmansyah.catalogmovie.utils.rx.SchedulerProvider;
 

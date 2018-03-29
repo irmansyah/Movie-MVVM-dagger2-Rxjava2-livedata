@@ -1,7 +1,5 @@
 package com.irmansyah.catalogmovie.ui.detailMovie;
 
-import android.content.ContentResolver;
-
 /**
  * Created by irmansyah on 26/02/18.
  */

@@ -6,7 +6,6 @@ import android.support.v7.widget.LinearLayoutManager;
 import com.irmansyah.catalogmovie.ViewModelProviderFactory;
 import com.irmansyah.catalogmovie.data.DataManager;
 import com.irmansyah.catalogmovie.data.model.Movie;
-import com.irmansyah.catalogmovie.ui.nowPlaying.NowPlayingFragment;
 import com.irmansyah.catalogmovie.utils.rx.SchedulerProvider;
 
 import java.util.ArrayList;

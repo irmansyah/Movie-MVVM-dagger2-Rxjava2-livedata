@@ -2,7 +2,6 @@ package com.irmansyah.catalogmovie.ui.main;
 
 import android.content.Context;
 import android.content.Intent;
-import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
@@ -16,7 +15,6 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.Toast;
 
 import com.irmansyah.catalogmovie.BR;
@@ -25,6 +23,7 @@ import com.irmansyah.catalogmovie.databinding.ActivityMainBinding;
 import com.irmansyah.catalogmovie.ui.base.BaseActivity;
 import com.irmansyah.catalogmovie.ui.favourite.FavouriteActivity;
 import com.irmansyah.catalogmovie.ui.search.SearchActivity;
+import com.irmansyah.catalogmovie.ui.setting.SettingActivity;
 
 import javax.inject.Inject;
 
@@ -36,6 +35,7 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
         implements HasSupportFragmentInjector, MainActivityNavigator, NavigationView.OnNavigationItemSelectedListener {
 
     private static final String TAG = "MainActivity";
+    public static final String MOVIE_ITEM = "MOVIE_ITEM";
 
     @Inject
     MainPagerAdapter mPagerAdapter;
@@ -101,6 +101,11 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
         switch (item.getItemId()) {
             case R.id.action_search:
                 startActivity(SearchActivity.gotoSearchActivity(this));
+                return true;
+
+            case R.id.action_settings:
+                Intent intent = new Intent(this, SettingActivity.class);
+                startActivity(intent);
                 return true;
 
             default:
@@ -189,7 +194,8 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
                 Log.i(TAG, "onNavigationItemSelected: nav_favourite");
                 return true;
             case R.id.nav_setting:
-                showToast(getString(R.string.not_ready_message), Toast.LENGTH_LONG);
+                Intent intent = new Intent(this, SettingActivity.class);
+                startActivity(intent);
                 Log.i(TAG, "onNavigationItemSelected: nav_setting");
                 return true;
             default:

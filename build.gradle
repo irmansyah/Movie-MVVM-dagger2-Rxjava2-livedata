@@ -38,8 +38,12 @@ ext {
     gsonVersion = '2.8.0'
     calligraphyVersion = '2.2.0'
     picassoVersion = '2.5.2'
+    glideVersion = '4.0.0'
     roomDatabase = '1.0.0-beta2'
     rx2FastAndroidNetworking = '1.0.1'
+
+    //view binding
+    butterKnifeVersion = '8.8.1'
 
     dagger2Version = '2.11'
     rxjava2Version = '2.0.6'
@@ -56,4 +60,7 @@ ext {
 
     //material search view
     materialSearchView = '1.4.0'
+
+    //google api
+    gcmVersion = "11.6.0"
 }

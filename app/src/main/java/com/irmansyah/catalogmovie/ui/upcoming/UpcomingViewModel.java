@@ -2,7 +2,6 @@ package com.irmansyah.catalogmovie.ui.upcoming;
 
 import android.arch.lifecycle.MutableLiveData;
 import android.databinding.ObservableArrayList;
-import android.text.TextUtils;
 import android.util.Log;
 
 import com.irmansyah.catalogmovie.data.DataManager;
@@ -13,10 +12,7 @@ import com.irmansyah.catalogmovie.utils.rx.SchedulerProvider;
 
 import java.util.List;
 
-import io.reactivex.Flowable;
-import io.reactivex.SingleSource;
 import io.reactivex.functions.Consumer;
-import io.reactivex.functions.Function;
 
 /**
  * Created by irmansyah on 28/02/18.
